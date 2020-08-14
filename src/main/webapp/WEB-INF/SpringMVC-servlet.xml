@@ -16,15 +16,16 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
       ">
 <!--    文档的springmvc配置说的是这里-->
-<!--    开启注解-->
-    <mvc:annotation-driven/>
+<!--    开启注解,这个同样也开启了大量的默认转换功能,比如各种从String转到Integer的情况.-->
+<!--    这个conversion中的值是对应下面的声明的bean的-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
 <!--    开启扫描-->
     <context:component-scan base-package="Controller"/>
 <!-- 静态资源过滤-->
-<!--    <mvc:resources location="/pages/" mapping="/pages/**"/>-->
+    <mvc:resources location="/pages/" mapping="/pages/**"/>
 
 
-    <mvc:default-servlet-handler/>
+<!--    <mvc:default-servlet-handler/>-->
 <!--    视图渲染-->
     <!-- 视图渲染 jsp/freemaker/velocity-->
 
@@ -37,6 +38,19 @@
     </bean>
 
 
-
+<!--  转换器配置-->
+  <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+<!--这个属性是一种可选属性,一共有好几种种-->
+<!--      Formatter与Converter的作用相同(如果没有了解过Converter,请先看另一篇springMVC自定义数据绑定-Converter)，但是Formatter的源类型必须是字符串(由客户端发送数据基本为字符串类型)-->
+<!--Converter能够将任意类型转换为指定的任意类型-->
+<!--   具体内容应该在这里 https://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#format-FormatterRegistrar-SPI  -->
+      <property name="converters">
+<set>
+    <ref bean="testController"/>
+</set>
+</property>
+  </bean>
+<!--    注意这个是点为分割而且必须要写-->
+<bean id="testController" class="Convert.convertTest"/>
 
 </beans>
