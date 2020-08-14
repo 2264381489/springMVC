@@ -25,7 +25,12 @@
 
 <!-- 静态资源过滤-->
 <!--    <mvc:resources location="/pages/" mapping="/pages/**"/>-->
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/resumeSolution"/>
+            <bean class="com.Interceptor.interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <mvc:default-servlet-handler/>
 <!--    视图渲染-->
