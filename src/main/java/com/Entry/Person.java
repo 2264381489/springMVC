@@ -1,6 +1,8 @@
-package Entry;
+package com.Entry;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     int id;
     String name;
     String email;

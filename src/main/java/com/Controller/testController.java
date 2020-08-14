@@ -1,6 +1,6 @@
-package Controller;
+package com.Controller;
 
-import Entry.Person;
+import com.Entry.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +27,7 @@ public class testController {
      *
      */
     @RequestMapping("/resumeSolution")
-    public String resumeSolution(@RequestParam("resume")Person person) throws Exception {
+    public String resumeSolution(@RequestParam("resume") Person person) throws Exception {
         System.out.println("处理简历");
         if (person==null){
             throw new Exception("没有成功!");

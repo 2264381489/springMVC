@@ -1,6 +1,6 @@
-package Convert;
+package com.Convert;
 
-import Entry.Person;
+import com.Entry.Person;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +15,7 @@ public class convertTest implements Converter<String, Person> {
     public Person convert(String s) {
         //从前端分割
         String[] split = s.split(",");
+        System.out.println("我被执行了");
         //遍历所有内容
         return new Person(Integer.parseInt(split[0]), split[1], split[2]);
     }
